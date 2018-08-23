@@ -1,51 +1,50 @@
 // alert('YOLO BINCHES! its SKETCH - A - BETCH');
-
-// HOVER Function:
 // rgb(0, 0, 0) = black
 // rgb(255, 255, 255) = white 
 
 function draw(cell) {
-  
  	if(cell.style.background = `rgb(255, 255, 255)`) {
  		 cell.style.background = `rgb(0, 0, 0)`;
  	}    
 };
 
-// function drawTwo(cell) {
-	
-// 	if(cell.style.background = `rgb(238, 238, 238)`) {
-//  		 cell.style.background = `rgb(221, 221, 221)`;
-//  	}    
-// };
-
-// CELL BUILDER function
 
 
-     // let cellCounter = 0;
-     // while (cellCounter >256) {
-     //     let emptyCell = document.createElement('div');
-     //     emptyCell.setAttribute('class', 'cell');
-     //     emptyCell.setAttribute('onmouseover',"draw(this)");
-     //     emptyCell.style.cssText = 'border: 1px red solid; background: rgb(255, 255, 255);';
-     //     grid.appendChild(emptyCell);
-     //     cellCounterer++;
-     //     console.log('test')
-     // };
-    
+// function clear() {
+// 	.button1:hover {
+//     background-color: #4CAF50;
+//     color: white;
+// }
 
-// this wrapper will contain the grid
+
 let wrapperPosition = document.querySelector('body');
+
+//CLEAR BUTTON WRAPPER
+let clearButtonWrapper = document.createElement('div');
+clearButtonWrapper.setAttribute('class','clearButtonDisplay');
+clearButtonWrapper.style.cssText = 'display: grid; grid-template-columns:1fr; width: 170px; height: 50px; border: 1px solid black;'
+wrapperPosition.appendChild(clearButtonWrapper);
+
+//CLEAR BUTTON 
+let clearButton = document.createElement('button');
+clearButton.setAttribute('id','clearButton');
+clearButton.style.cssText = 'background-color: #2df700; border: none; color: white; padding: 16px 32px; text-align: center;text-decoration: none; display: inline-block;font-size: 16px; margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer;'
+clearButtonWrapper.appendChild(clearButton);
+clearButton.textContent = 'Clear the Board';
+
+
+
+// GRID WRAPPER
+
 let wrapper = document.createElement('div');
 wrapper.setAttribute('id', 'wrapper'); 
-wrapper.style.cssText = 'display:grid; grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16,1fr); height: 500px; width: 500px;';
+wrapper.style.cssText = 'display:grid; grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16,1fr); height: 500px; width: 500px; margin-left: auto; margin-right: auto; margin-top: 73px;';
 wrapperPosition.appendChild(wrapper);
 // wrapper.textContent = 'Hello World!' 
 
 
-
 //BUILD CELLS
 let cellPosition = document.querySelector('#wrapper');
-
 let counter = 0;
 
      while (counter <256) {
@@ -53,213 +52,57 @@ let counter = 0;
          let cellName = document.createElement('div');
          cellName.setAttribute('class', 'cell');
          cellName.setAttribute('onmouseover',"draw(this)");
-         cellName.style.cssText = 'border: 1px red solid; background: rgb(255, 255, 255);';
+         cellName.style.cssText = 'border: 1px #2df700 solid; background: rgb(255, 255, 255);';
          cellPosition.appendChild(cellName);
          counter++;
-         console.log('test')
+         
      };
-// buildCells(cellPosition);
 
 
-//ROW 1
+// CLEAR THE BOARD
+	//remove old board first:
+     clearButton.addEventListener('click', () => {
+     	 let counter = 0;
+     	 while (counter < 256) {
+     		let cellNode = document.querySelector('.cell')
+        	console.log(cellPosition.nodeType);
+        	console.log(cellPosition.nodeName);
+        	console.log(cellPosition.hasChildNodes());
+        	console.log(cellNode);
+        	cellPosition.removeChild(cellNode);
+        	 counter++;
+            }
+         
+    //build new board:
+         let newCounter = 0;
+         while (newCounter <256) {
+     	 
+           let cellName = document.createElement('div');
+           cellName.setAttribute('class', 'cell');
+           cellName.setAttribute('onmouseover',"draw(this)");
+           cellName.style.cssText = 'border: 1px #2df700 solid; background: rgb(255, 255, 255);';
+           cellPosition.appendChild(cellName);
+           newCounter++;
+        
+        }; 
 
-// let oneA = document.createElement('div');
-// oneA.setAttribute('id', 'oneA');
-// oneA.setAttribute('class', 'cell');
-// oneA.setAttribute('onmouseover',"draw(this)");
-// oneA.setAttribute('onmouseout',"draw(this)");
-// oneA.setAttribute('onmouseover',"drawTwo(this)"); 
-// oneA.style.cssText = 'border: 1px red solid; background: rgb(255, 255, 255);';
-// cellPosition.appendChild(oneA);
-
-// let oneB = document.createElement('div');
-// oneB.setAttribute('id', 'oneB');
-// oneB.setAttribute('class', 'cell'); 
-// oneB.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneB);
-
-// let oneC = document.createElement('div');
-// oneC.setAttribute('id', 'oneC');
-// oneC.setAttribute('class', 'cell'); 
-// oneC.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneC);
-
-// let oneD = document.createElement('div');
-// oneD.setAttribute('id', 'oneD');
-// oneD.setAttribute('class', 'cell'); 
-// oneD.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneD);
-
-// let oneE = document.createElement('div');
-// oneE.setAttribute('id', 'oneE');
-// oneE.setAttribute('class', 'cell'); 
-// oneE.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneE);
-
-// let oneF = document.createElement('div');
-// oneF.setAttribute('id', 'oneF');
-// oneF.setAttribute('class', 'cell'); 
-// oneF.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneF);
-
-// let oneG = document.createElement('div');
-// oneG.setAttribute('id', 'oneG');
-// oneG.setAttribute('class', 'cell'); 
-// oneG.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneG);
-
-// let oneH = document.createElement('div');
-// oneH.setAttribute('id', 'oneH');
-// oneH.setAttribute('class', 'cell'); 
-// oneH.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneH);
-
-// let oneI = document.createElement('div');
-// oneI.setAttribute('id', 'oneI');
-// oneI.setAttribute('class', 'cell'); 
-// oneI.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneI);
-
-// let oneJ = document.createElement('div');
-// oneJ.setAttribute('id', 'oneJ');
-// oneJ.setAttribute('class', 'cell'); 
-// oneJ.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneJ);
-
-// let oneK = document.createElement('div');
-// oneK.setAttribute('id', 'oneK');
-// oneK.setAttribute('class', 'cell'); 
-// oneK.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneK);
-
-// let oneL = document.createElement('div');
-// oneL.setAttribute('id', 'oneL');
-// oneL.setAttribute('class', 'cell'); 
-// oneL.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneL);
-
-// let oneM = document.createElement('div');
-// oneM.setAttribute('id', 'oneM');
-// oneM.setAttribute('class', 'cell'); 
-// oneM.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneM);
-
-// let oneN = document.createElement('div');
-// oneN.setAttribute('id', 'oneG');
-// oneN.setAttribute('class', 'cell'); 
-// oneN.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneN);
-
-// let oneO = document.createElement('div');
-// oneO.setAttribute('id', 'oneO');
-// oneO.setAttribute('class', 'cell'); 
-// oneO.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneO);
-
-// let oneP = document.createElement('div');
-// oneP.setAttribute('id', 'oneP');
-// oneP.setAttribute('class', 'cell'); 
-// oneP.style.cssText = 'border: 1px red solid';
-// cellPosition.appendChild(oneP);
-
-// //ROW 2
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoB = document.createElement('div');
-// twoB.setAttribute('id', 'twoB');
-// twoB.setAttribute('class', 'cell'); 
-// twoB.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoB);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
-
-// let twoA = document.createElement('div');
-// twoA.setAttribute('id', 'twoA');
-// twoA.setAttribute('class', 'cell'); 
-// twoA.style.cssText = 'border: 1px blue solid';
-// cellPosition.appendChild(twoA);
+     });     
 
 
+  
+//      	let counter = 0;
+
+//      while (counter <256) {
+     	 
+//          let cellName = document.createElement('div');
+//          cellName.setAttribute('class', 'cell');
+//          cellName.setAttribute('onmouseover',"draw(this)");
+//          cellName.style.cssText = 'border: 1px #2df700 solid; background: rgb(255, 255, 255);';
+//          cellPosition.appendChild(cellName);
+//          counter++;
+//          console.log('test')
+//      };
+	
+// });
 
 
